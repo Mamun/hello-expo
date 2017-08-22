@@ -1,0 +1,9 @@
+var DummyClass={};
+DummyClass.Alert=function(){};
+DummyClass.AppRegistry=function(){};
+DummyClass.Image=function(){};
+DummyClass.Text=function(){};
+DummyClass.TouchableHighlight=function(){};
+DummyClass.View=function(){};
+DummyClass.alert=function(){};
+DummyClass.registerComponent=function(){};
