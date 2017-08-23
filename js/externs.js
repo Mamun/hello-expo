@@ -1,9 +1,10 @@
 var DummyClass={};
 DummyClass.Alert=function(){};
+DummyClass.Animated=function(){};
 DummyClass.AppRegistry=function(){};
-DummyClass.Image=function(){};
-DummyClass.Text=function(){};
-DummyClass.TouchableHighlight=function(){};
-DummyClass.View=function(){};
+DummyClass.AppState=function(){};
+DummyClass.Modal=function(){};
+DummyClass.Value=function(){};
+DummyClass.VirtualizedList=function(){};
 DummyClass.alert=function(){};
 DummyClass.registerComponent=function(){};

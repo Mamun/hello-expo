@@ -1,4 +1,4 @@
-(ns hello.login
+(ns hello.screen.login
   (:require [hello.react-requires :refer [ActivityIndicator Platform Button TouchableOpacity Ionicons InteractionManager View ScrollView Text TouchableHighlight]]
             [cljs-react-navigation.re-frame :refer [stack-navigator tab-navigator stack-screen tab-screen router]]
             [reagent.core :as r]
@@ -40,3 +40,7 @@
                    :justifyContent "center"
                    :height         80}
        :size      "large"}]]))
+
+
+(def LoginStack (stack-navigator {:Login1  {:screen (stack-screen login1 dynamic-navigationOptions)}
+                                  :Loading {:screen (stack-screen loading {:header nil})}}))
