@@ -1,6 +1,5 @@
 (ns hello.handlers
   (:require
-
     [re-frame.core :refer [reg-event-db ->interceptor after dispatch]]
     [clojure.spec.alpha :as s]
     [hello.db :as db :refer [app-db]]))
@@ -40,7 +39,6 @@
   (fn [db [_ value]]
     (assoc db :greeting value)))
 
-
 (reg-event-db
   :reset-routing-state
   validate-spec
@@ -61,8 +59,6 @@
                                            :routes    [{:routeName "Login1", :key "Login1Init"}],
                                            :key       "LoginStackInit",
                                            :routeName "LoginStack"}]}))))
-
-
 
 (reg-event-db
   :login

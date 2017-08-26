@@ -5,21 +5,15 @@
             [hello.subs]
             [hello.screen.login :as login]
             [hello.screen.home :as h]
-            [hello.react-requires :refer [Image Platform Button TouchableOpacity Ionicons InteractionManager View ScrollView Text TouchableHighlight]]
+            [hello.react-requires :refer [Alert AppRegistry Image Platform Button TouchableOpacity Ionicons InteractionManager View ScrollView Text TouchableHighlight]]
     ;[cljs-react-navigation.reagent :refer [stack-navigator tab-navigator stack-screen tab-screen ] :as nav]
     ;[cljs-react-navigation.re-frame :refer [stack-navigator tab-navigator stack-screen tab-screen router] :as nav]
             [cljs-react-navigation.re-frame :refer [stack-navigator tab-navigator stack-screen tab-screen router] :as nav]
             ))
 
-(def ReactNative (js/require "react-native"))
-
-(def app-registry (.-AppRegistry ReactNative))
-;(def text (r/adapt-react-class (.-Text ReactNative)))
-;(def view (r/adapt-react-class (.-View ReactNative)))
-;(def image (r/adapt-react-class (.-Image ReactNative)))
-;(de ReactNavigation (js/require "react-navigation"))
-;(def touchable-highlight (r/adapt-react-class (.-TouchableHighlight ReactNative)))
-(def Alert (.-Alert ReactNative))
+;(def ReactNative (js/require "react-native"))
+;(def app-registry (.-AppRegistry ReactNative))
+;(def Alert (.-Alert ReactNative))
 
 (defn alert [title]
   (.alert Alert title))
@@ -36,7 +30,6 @@
                                      {:headerMode "none"
                                       :mode       "modal"}))
 
-
 (defn app-root []
   (r/create-class
     (let [nav-state (subscribe [::nav/routing-state])]
@@ -45,13 +38,13 @@
                                  (dispatch-sync [:reset-routing-state])))
        :reagent-render       (fn []
                                [router {:root-router AllRoutesStack}])})))
-#_(defn init []
-    (.registerComponent AppRegistry "UIExplorer" #(r/reactify-component app-root)))
 
 (defn init []
   (dispatch-sync [:initialize-db])
-  (.registerComponent app-registry "main" #(r/reactify-component app-root)))
+  (.registerComponent AppRegistry "main" #(r/reactify-component app-root)))
 
+
+;(alert "Check")
 
 (comment
 
@@ -70,7 +63,7 @@
     )
 
 
-  (alert "Check")
+
 
   (dispatch [:set-greeting "Hello From App"])
 

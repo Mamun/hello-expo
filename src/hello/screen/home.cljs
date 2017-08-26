@@ -3,16 +3,22 @@
             [re-frame.core :refer [subscribe dispatch dispatch-sync]]
             [hello.handlers]
             [hello.subs]
-            [hello.screen.login :as login]
-            [hello.react-requires :refer [Image Platform Button TouchableOpacity Ionicons InteractionManager View ScrollView Text TouchableHighlight]]
-    ;[cljs-react-navigation.reagent :refer [stack-navigator tab-navigator stack-screen tab-screen ] :as nav]
-    ;[cljs-react-navigation.re-frame :refer [stack-navigator tab-navigator stack-screen tab-screen router] :as nav]
+            [hello.react-requires :refer [Alert MapView Image Platform Button TouchableOpacity Ionicons InteractionManager View ScrollView Text TouchableHighlight]]
             [cljs-react-navigation.re-frame :refer [stack-navigator tab-navigator stack-screen tab-screen router] :as nav]
             ))
 
 (def darkGrey "#484848")
 (def blue "#348BFE")
 
+
+(defn alert [title]
+  (.alert Alert title))
+
+
+(comment
+  (alert "asfas")
+
+  )
 
 (defn home
   "Each Screen will receive two props:
@@ -50,10 +56,11 @@
                         :alignItems     "center"
                         :justifyContent "center"}}
        [:> Text {} (str "Searching for " (:search params))]
-
        [:> Button {:style   {:fontSize 17}
                    :onPress #(setParams (clj->js {:search (rand-int 100)}))
                    :title   "Search!"}]])))
+
+
 
 (defn placeholder [props]
   (fn [{:keys [screenProps navigation] :as props}]
@@ -61,10 +68,29 @@
       [:> View {:style {:flex           1
                         :alignItems     "center"
                         :justifyContent "center"}}
-       [:> Text {} "Nothing to see here!"]
+       [:> Text {} "Nothing to see here more 3 !"]
+       [:> Button {:style   {:fontSize 17}
+                   :onPress #(goBack)
+                   :title   "Go Name New 10"}]
        [:> Button {:style   {:fontSize 17}
                    :onPress #(goBack)
                    :title   "Go Back!"}]])))
+
+
+(defn map-view [props]
+  (fn [{:keys [screenProps navigation] :as props}]
+    (let [{:keys [goBack]} navigation]
+      [:> MapView {:style         {:flex 1}
+                   :initialRegion {:latitude       37.78825
+                                   :longitude      -122.4324
+                                   :latitudeDelta  0.0922
+                                   :longitudeDelta 0.0421}
+
+                   :onRegionChange (fn []
+                                     (alert "Regin change ")
+                                     )
+                   }])))
+
 
 (def home-tabBar {:tabBarLabel "Home"
                   :tabBarIcon  (fn [{:keys [tintColor focused] :as props}]
@@ -81,7 +107,7 @@
 
 
 (def HomeStack (stack-navigator {:Home        {:screen (stack-screen home {:title "Home"})}
-                                 :Placeholder {:screen (stack-screen placeholder {:title "Placeholder"})}}))
+                                 :Placeholder {:screen (stack-screen map-view {:title "Placeholder"})}}))
 
 (def SearchStack (stack-navigator {:Search {:screen (stack-screen search {:title "Search"})}}))
 

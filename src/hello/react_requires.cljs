@@ -2,6 +2,7 @@
 
 
 (set! js/ReactNative (js/require "react-native"))
+(set! js/Exp (js/require "expo"))
 
 (defonce Modal (.-Modal js/ReactNative))
 (defonce Animated ^js/ReactNative.Animated (.-Animated js/ReactNative))
@@ -43,3 +44,7 @@
 (defonce Ionicons (aget (js/require "react-native-vector-icons/Ionicons") "default"))
 
 (defonce ReactNavigation (js/require "react-navigation"))
+
+
+
+(defonce MapView (aget js/Exp "MapView"))
